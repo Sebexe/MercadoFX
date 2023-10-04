@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// cambio
+
 public class HelloApplication extends Application {
 
     private static HelloApplication instancia; // Variable para almacenar la instancia única
