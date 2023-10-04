@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to right, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szafra.mercadofx.VentaController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="0.0" prefWidth="15.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="182.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.0" minWidth="10.0" prefWidth="152.0" />
+      <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="199.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="163.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="158.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="121.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="204.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="125.0" minHeight="0.0" prefHeight="81.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="260.0" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Pane prefHeight="649.0" prefWidth="600.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
+         <children>
+            <Button layoutX="401.0" layoutY="124.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" styleClass="boton" stylesheets="@estilos.css" text="Agregar al Carrito" />
+            <TextField layoutX="30.0" layoutY="124.0" promptText="COD PRODUCTO" />
+            <TextField layoutX="196.0" layoutY="124.0" promptText="CANTIDAD" />
+            <TableView layoutX="21.0" layoutY="186.0" prefHeight="384.0" prefWidth="540.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Label layoutX="110.0" layoutY="14.0" prefHeight="17.0" prefWidth="377.0" text="Carrito Actual" textAlignment="CENTER">
+               <font>
+                  <Font size="58.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane prefHeight="649.0" prefWidth="600.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3">
+         <children>
+            <Label layoutX="77.0" layoutY="34.0" prefHeight="17.0" prefWidth="377.0" text="Pagar" textAlignment="CENTER">
+               <font>
+                  <Font size="58.0" />
+               </font>
+            </Label>
+            <TextField layoutX="84.0" layoutY="187.0" promptText="Ingresar Metodo" />
+            <Text layoutX="26.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio con el metodo:" />
+            <Button layoutX="49.0" layoutY="429.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="218.0" styleClass="boton" stylesheets="@estilos.css" text="Confirmar Venta" />
+         </children>
+      </Pane>
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="146.0" styleClass="boton" stylesheets="@estilos.css" text="Volver al menu" textAlignment="CENTER" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+   </children>
+</GridPane>
