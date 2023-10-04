@@ -4,5 +4,6 @@ module com.szafra.mercadofx {
 
 
     opens com.szafra.mercadofx to javafx.fxml;
+    opens negocio to javafx.base;
     exports com.szafra.mercadofx;
 }

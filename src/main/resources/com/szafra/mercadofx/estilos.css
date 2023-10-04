@@ -1,4 +1,15 @@
 .boton {
-    -fx-background-color: linear-gradient(to right, rgba(211,188,255,1) 0%, rgba(255,0,221,1) 100%);
+    -fx-background-color:  linear-gradient(to right, rgba(178,255,177,1) 0%, rgba(158,244,133,1) 100%);
     -fx-background-radius: 20px;
+}
+
+.boton2 {
+    -fx-background-color: linear-gradient(to right, rgba(211,188,255,1) 0%, white);
+    -fx-background-radius: 20px;
+}
+
+.tarjeta:hover{
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-radius: 1px;
 }
