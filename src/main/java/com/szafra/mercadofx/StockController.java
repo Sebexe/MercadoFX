@@ -37,6 +37,7 @@ public class StockController {
 
     @FXML
     protected void onEliminarProductoClick() {
+        //hola
         if (modificarID.getText().isEmpty())
             HelloApplication.obtenerInstancia().crearAlerta("Alguno de los campos no esta completo");
         else {
