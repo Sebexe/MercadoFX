@@ -64,6 +64,13 @@ public class Programa extends Application {
         nuevaAlerta.show();
     }
 
+
+    public void crearAlertaPositiva(String texto){
+        Alert nuevaAlerta = new Alert(Alert.AlertType.CONFIRMATION);
+        nuevaAlerta.setContentText(texto);
+        nuevaAlerta.show();
+    }
+
     public void cambiarEscenaMenu(){
         escenario.setScene(menuP);
     }
@@ -74,9 +81,7 @@ public class Programa extends Application {
         escenario.setScene(ventaP);
     }
     public void cambiarEscenaHistorial(){
-        if (historialP != null)
-            escenario.setScene(historialP);
-        else crearAlerta("Todavia no esta habilitado ir al historial");
+        escenario.setScene(historialP);
 
     }
 

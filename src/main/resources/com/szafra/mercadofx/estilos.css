@@ -12,4 +12,5 @@
     -fx-border-color: #363636;
     -fx-border-style:  solid;
     -fx-border-width: 2px;
+    -fx-background-radius: 20%;
 }

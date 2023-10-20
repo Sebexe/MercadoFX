@@ -38,6 +38,38 @@ public class StockController {
     }
 
     @FXML
+    protected void onAgregarProductoClick() {
+        if (nuevoID.getText().isEmpty() || nuevaDescripcion.getText().isEmpty() || nuevoPrecio.getText().isEmpty() || nuevoActual.getText().isEmpty() || nuevoMinimo.getText().isEmpty())
+            Programa.obtenerInstancia().crearAlerta("Alguno de los campos no esta completo");
+        else {
+            int codigoNuevo = Integer.parseInt(nuevoID.getText());
+            String descripcionNueva = nuevaDescripcion.getText();
+            int precioNuevo = Integer.parseInt(nuevoPrecio.getText());
+            int actualNuevo = Integer.parseInt(nuevoActual.getText());
+            int minimoNuevo = Integer.parseInt(nuevoMinimo.getText());
+            if (Programa.obtenerInstancia().usarAlmacen().estaProducto(codigoNuevo)) {
+                Programa.obtenerInstancia().crearAlerta("El producto yá esta en el almacen");
+            }
+            else {
+                if (actualNuevo < 0 || minimoNuevo < 0 || precioNuevo < 0){
+                    Programa.obtenerInstancia().crearAlerta("No se puede poner precio ni stock negativo");
+                }
+                else {
+                    Programa.obtenerInstancia().usarAlmacen().agregarProducto(codigoNuevo, descripcionNueva, precioNuevo, actualNuevo, minimoNuevo);
+                    Programa.obtenerInstancia().guardarAlmacen();
+                    ObservableList<Producto> productosObservableList = FXCollections.observableArrayList(Programa.obtenerInstancia().listarProductos());
+                    tabla.setItems(productosObservableList);
+                    Programa.obtenerInstancia().crearAlertaPositiva("El producto se ha cargado correctamente.");
+                    nuevoID.clear();
+                    nuevaDescripcion.clear();
+                    nuevoPrecio.clear();
+                    nuevoActual.clear();
+                    nuevoMinimo.clear();
+                }
+            }
+        }
+    }
+    @FXML
     protected void onEliminarProductoClick() {
         //hola
         if (modificarID.getText().isEmpty())
@@ -52,7 +84,7 @@ public class StockController {
                 Programa.obtenerInstancia().guardarAlmacen();
                 ObservableList<Producto> productosObservableList = FXCollections.observableArrayList(Programa.obtenerInstancia().listarProductos());
                 tabla.setItems(productosObservableList);
-                Programa.obtenerInstancia().crearAlerta("El producto se ha eliminado correctamente.");
+                Programa.obtenerInstancia().crearAlertaPositiva("El producto se ha eliminado correctamente.");
                 modificarID.clear();
             }
 
@@ -60,29 +92,6 @@ public class StockController {
     }
 
 
-    @FXML
-    protected void onAgregarProductoClick() {
-        if (nuevoID.getText().isEmpty() || nuevaDescripcion.getText().isEmpty() || nuevoPrecio.getText().isEmpty() || nuevoActual.getText().isEmpty() || nuevoMinimo.getText().isEmpty())
-            Programa.obtenerInstancia().crearAlerta("Alguno de los campos no esta completo");
-        else {
-            int codigoNuevo = Integer.parseInt(nuevoID.getText());
-            String descripcionNueva = nuevaDescripcion.getText();
-            int precioNuevo = Integer.parseInt(nuevoPrecio.getText());
-            int actualNuevo = Integer.parseInt(nuevoActual.getText());
-            int minimoNuevo = Integer.parseInt(nuevoMinimo.getText());
-            if (Programa.obtenerInstancia().usarAlmacen().estaProducto(codigoNuevo)) {
-                Programa.obtenerInstancia().crearAlerta("El producto yá esta en el almacen");
-            }
-            else {
-                Programa.obtenerInstancia().usarAlmacen().agregarProducto(codigoNuevo, descripcionNueva, precioNuevo, actualNuevo, minimoNuevo);
-                Programa.obtenerInstancia().guardarAlmacen();
-                ObservableList<Producto> productosObservableList = FXCollections.observableArrayList(Programa.obtenerInstancia().listarProductos());
-                tabla.setItems(productosObservableList);
-                Programa.obtenerInstancia().crearAlerta("El producto se ha cargado correctamente.");
-                nuevoID.clear();nuevaDescripcion.clear();nuevoPrecio.clear();nuevoActual.clear();nuevoMinimo.clear();
-            }
-        }
-    }
 
     @FXML
     protected void onAgregarStockClick() {
@@ -91,15 +100,21 @@ public class StockController {
         else {
             int idModificar = Integer.parseInt(modificarID.getText());
             int aAgregar = Integer.parseInt(nuevoStock.getText());
-            Programa.obtenerInstancia().usarAlmacen().agregarExistencias(idModificar,aAgregar);
-            productosObservableList.clear();
-            productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
-            Programa.obtenerInstancia().crearAlerta("Las existencias se han agregado correctamente.");
-            Programa.obtenerInstancia().guardarAlmacen();
-            modificarID.clear();nuevoStock.clear();
-
+            if (!Programa.obtenerInstancia().usarAlmacen().estaProducto(idModificar))
+                Programa.obtenerInstancia().crearAlerta("El producto no esta en la base de datos");
+            else if (aAgregar < 0)
+                Programa.obtenerInstancia().crearAlerta("No se permiten numeros negativos.");
+            else if (Programa.obtenerInstancia().usarAlmacen().haySuficiente(idModificar,aAgregar)){
+                Programa.obtenerInstancia().usarAlmacen().agregarExistencias(idModificar,aAgregar);
+                Programa.obtenerInstancia().crearAlertaPositiva("Las existencias se han agregado correctamente.");
+                productosObservableList.clear();
+                productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
+                Programa.obtenerInstancia().guardarAlmacen();
+                modificarID.clear();nuevoStock.clear();
+            }
+            else
+                Programa.obtenerInstancia().crearAlerta("Ha ocurrido un error.");
         }
-
     }
 
     @FXML
@@ -109,18 +124,23 @@ public class StockController {
         else {
             int idModificar = Integer.parseInt(modificarID.getText());
             int aAgregar = Integer.parseInt(nuevoStock.getText());
-            Programa.obtenerInstancia().usarAlmacen().sacarExistencias(idModificar,aAgregar);
-            Programa.obtenerInstancia().guardarAlmacen();
-            productosObservableList.clear();
-            productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
-            Programa.obtenerInstancia().crearAlerta("Las existencias se han agregado correctamente.");
-            modificarID.clear();nuevoStock.clear();
+            if (!Programa.obtenerInstancia().usarAlmacen().estaProducto(idModificar))
+                Programa.obtenerInstancia().crearAlerta("El producto no esta en la base de datos");
+            else if (aAgregar < 0)
+                Programa.obtenerInstancia().crearAlerta("No se permiten numeros negativos.");
+            else if (Programa.obtenerInstancia().usarAlmacen().haySuficiente(idModificar,-aAgregar)){
+                Programa.obtenerInstancia().usarAlmacen().sacarExistencias(idModificar,aAgregar);
+                Programa.obtenerInstancia().guardarAlmacen();
+                productosObservableList.clear();
+                productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
+                Programa.obtenerInstancia().crearAlertaPositiva("Las existencias se han restado correctamente.");
+                modificarID.clear();nuevoStock.clear();}
+            else {
+                Programa.obtenerInstancia().crearAlerta("Ha ocurrido un error la cantidad no puede ser negativa.");
+            }
         }
 
     }
-
-
-
 
     @FXML
     public void initialize(){
