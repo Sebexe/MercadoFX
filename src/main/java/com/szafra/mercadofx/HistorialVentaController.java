@@ -5,6 +5,6 @@ import javafx.fxml.FXML;
 public class HistorialVentaController {
     @FXML
     protected void onMenuButtonClick() {
-        HelloApplication.obtenerInstancia().cambiarEscenaMenu();
+        Programa.obtenerInstancia().cambiarEscenaMenu();
     }
 }

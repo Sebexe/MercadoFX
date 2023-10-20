@@ -9,14 +9,14 @@ public class MenuController {
 
     @FXML
     protected void onHistorialButtonClick() {
-        HelloApplication.obtenerInstancia().cambiarEscenaHistorial();
+        Programa.obtenerInstancia().cambiarEscenaHistorial();
     }
     @FXML
     protected void onStockButtonClick() {
-        HelloApplication.obtenerInstancia().cambiarEscenaStock();
+        Programa.obtenerInstancia().cambiarEscenaStock();
     }
     @FXML
     protected void onVentaButtonClick() {
-        HelloApplication.obtenerInstancia().cambiarEscenaVenta();
+        Programa.obtenerInstancia().cambiarEscenaVenta();
     }
 }

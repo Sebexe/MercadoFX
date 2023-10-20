@@ -9,7 +9,7 @@
 }
 
 .tarjeta:hover{
-    -fx-border-color: black;
-    -fx-border-style: solid;
-    -fx-border-radius: 1px;
+    -fx-border-color: #363636;
+    -fx-border-style:  solid;
+    -fx-border-width: 2px;
 }

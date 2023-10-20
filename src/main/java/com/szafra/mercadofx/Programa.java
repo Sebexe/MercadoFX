@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 // cambio
 
-public class HelloApplication extends Application {
+public class Programa extends Application {
 
-    private static HelloApplication instancia; // Variable para almacenar la instancia única
+    private static Programa instancia; // Variable para almacenar la instancia única
     private static Scene menuP;
     private static Scene stockP;
     private static Scene ventaP;
@@ -25,31 +25,32 @@ public class HelloApplication extends Application {
     private static Almacen almacenPrincipal;
 
 
-    public static HelloApplication obtenerInstancia() {
+
+
+
+
+    public static Programa obtenerInstancia() {
         return instancia;
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        almacenPrincipal = cargarAlmacen();
-        almacenPrincipal.agregarProducto(1,"Leche",200,100,20);
-        instancia = this;
-        escenario = stage;
         stage.setMinHeight(720);
         stage.setMinWidth(1280);
-        FXMLLoader cargadorMenu = new FXMLLoader(HelloApplication.class.getResource("menuPrincipal.fxml"));
+        escenario = stage;
+        almacenPrincipal = cargarAlmacen();
+        FXMLLoader cargadorMenu = new FXMLLoader(Programa.class.getResource("menuPrincipal.fxml"));
+        FXMLLoader cargadorHistorialVenta = new FXMLLoader(Programa.class.getResource("historialVentas.fxml"));
+        FXMLLoader cargadorStock = new FXMLLoader(Programa.class.getResource("Stock.fxml"));
+        FXMLLoader cargadorVenta = new FXMLLoader(Programa.class.getResource("nuevaVenta.fxml"));
+        instancia = this;
         Scene escenaMenu = new Scene(cargadorMenu.load(), 1280, 720);
         menuP = escenaMenu;
-        FXMLLoader cargadorStock = new FXMLLoader(HelloApplication.class.getResource("Stock.fxml"));
-        FXMLLoader cargadorVenta = new FXMLLoader(HelloApplication.class.getResource("nuevaVenta.fxml"));
-        Scene escenaVenta = new Scene(cargadorVenta.load(),1280,720);
-        ventaP = escenaVenta;
-
-        FXMLLoader cargadorHistorialVenta = new FXMLLoader(HelloApplication.class.getResource("historialVentas.fxml"));
-        Scene escenaHistorialVenta = new Scene(cargadorHistorialVenta.load(),1280,720);
-        historialP = escenaHistorialVenta;
-
+        ventaP = new Scene(cargadorVenta.load(),1280,720);
+        historialP = new Scene(cargadorHistorialVenta.load(),1280,720);
         stockP = new Scene(cargadorStock.load(), 1280, 720);
+
+
 
 
         stage.setTitle("Hello!");
