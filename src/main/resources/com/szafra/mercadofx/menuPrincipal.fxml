@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to right,  rgba(84,142,255,1) 20%, rgba(2,255,78,1) 49%, rgba(0,255,184,1) 72%, rgba(0,255,184,1) 81%);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szafra.mercadofx.MenuController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="fondoMenu" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szafra.mercadofx.MenuController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -21,9 +21,9 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onStockButtonClick" prefHeight="557.0" prefWidth="342.0" style="-fx-background-color: transparent;" stylesheets="@estilos.css" GridPane.halignment="CENTER">
+      <Button contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onStockButtonClick" prefHeight="557.0" prefWidth="342.0" styleClass="bordeTarjeta" stylesheets="@estilos.css" GridPane.halignment="CENTER">
          <graphic>
-            <VBox alignment="CENTER" prefHeight="513.0" prefWidth="277.0" spacing="30.0" style="-fx-background-color: white; -fx-background-radius: 50px;">
+            <VBox alignment="CENTER" prefHeight="513.0" prefWidth="277.0" spacing="30.0" style="-fx-background-radius: 50px;" styleClass="fondoTarjeta">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -32,7 +32,7 @@
                   </ImageView>
                   <Label text="Administrar Stock">
                      <font>
-                        <Font size="30.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
                </children>
@@ -41,9 +41,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="45.0" layoutY="82.0" mnemonicParsing="false" onAction="#onVentaButtonClick" prefHeight="576.0" prefWidth="358.0" style="-fx-background-color: transparent;" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+      <Button layoutX="45.0" layoutY="82.0" mnemonicParsing="false" onAction="#onVentaButtonClick" prefHeight="576.0" prefWidth="358.0" styleClass="bordeTarjeta" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.halignment="CENTER">
          <graphic>
-            <VBox alignment="CENTER" prefHeight="595.0" prefWidth="364.0" spacing="30.0" style="-fx-background-color: white; -fx-background-radius: 50px;">
+            <VBox alignment="CENTER" prefHeight="595.0" prefWidth="364.0" spacing="30.0" style="-fx-background-radius: 50px;" styleClass="fondoTarjeta" stylesheets="@estilos.css">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -52,7 +52,7 @@
                   </ImageView>
                   <Label text="Nueva Venta">
                      <font>
-                        <Font size="30.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
                </children>
@@ -62,9 +62,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="437.0" layoutY="82.0" mnemonicParsing="false" onAction="#onHistorialButtonClick" prefHeight="576.0" prefWidth="358.0" style="-fx-background-color: transparent;" stylesheets="@estilos.css" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+      <Button layoutX="437.0" layoutY="82.0" mnemonicParsing="false" onAction="#onHistorialButtonClick" prefHeight="576.0" prefWidth="358.0" styleClass="bordeTarjeta" stylesheets="@estilos.css" GridPane.columnIndex="2" GridPane.halignment="CENTER">
          <graphic>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" style="-fx-background-color: white; -fx-background-radius: 50px;">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" style="-fx-background-radius: 50px;" styleClass="fondoTarjeta" stylesheets="@estilos.css">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -73,7 +73,7 @@
                   </ImageView>
                   <Label text="Ventas Pasadas">
                      <font>
-                        <Font size="30.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
                </children>

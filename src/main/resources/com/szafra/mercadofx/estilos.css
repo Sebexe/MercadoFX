@@ -4,13 +4,35 @@
 }
 
 .boton2 {
-    -fx-background-color: linear-gradient(to right, rgba(211,188,255,1) 0%, white);
-    -fx-background-radius: 20px;
+    -fx-background-color: #7b2cbf;
+    -fx-background-radius: 50px;
 }
 
-.tarjeta:hover{
-    -fx-border-color: #363636;
-    -fx-border-style:  solid;
-    -fx-border-width: 2px;
-    -fx-background-radius: 20%;
+.boton2:hover {
+    -fx-background-color: #3c096c;
+    -fx-background-radius: 50px;
 }
+
+
+.fondoMenu {
+    -fx-background-color: linear-gradient(to right, rgba(123,44,191,1) 40%, rgba(60,9,108,1) 100%);
+}
+
+.fondo {
+    -fx-background-color: linear-gradient(to right, rgba(123,44,191,1) 40%, rgba(60,9,108,1) 100%);
+}
+
+
+.fondoTarjeta {
+    -fx-background-color: linear-gradient(to right,rgba(253,197,0,1) 39%, rgba(252,176,69,1) 84%);
+}
+.bordeTarjeta {
+    -fx-background-color: linear-gradient(to right, rgba(123,44,191,1) 39%, rgba(224,170,255,1) 84%);
+    -fx-background-radius: 50px;
+}
+
+.bordeTarjeta:hover {
+    -fx-background-color: linear-gradient(to left, rgba(123,44,191,1) 39%, rgba(224,170,255,1) 84%);
+    -fx-background-radius: 50px;
+}
+

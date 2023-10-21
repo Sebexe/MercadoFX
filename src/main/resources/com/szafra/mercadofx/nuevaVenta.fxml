@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to right, rgba(0,255,184,1) 17%, rgba(2,255,78,1) 29%, rgba(84,142,255,1) 80%);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szafra.mercadofx.VentaController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="fondo" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.szafra.mercadofx.VentaController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="0.0" prefWidth="15.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="182.0" />
@@ -32,12 +32,15 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Pane prefHeight="649.0" prefWidth="600.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
+      <Pane prefHeight="649.0" prefWidth="600.0" styleClass="fondoTarjeta" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
          <children>
-            <Button layoutX="401.0" layoutY="124.0" mnemonicParsing="false" onAction="#onAgregarCarritoClick" prefHeight="25.0" prefWidth="155.0" styleClass="boton" stylesheets="@estilos.css" text="Agregar al Carrito">
+            <Button layoutX="401.0" layoutY="124.0" mnemonicParsing="false" onAction="#onAgregarCarritoClick" prefHeight="25.0" prefWidth="155.0" styleClass="boton2" stylesheets="@estilos.css" text="Agregar al Carrito" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
             <TextField fx:id="codProducto" layoutX="30.0" layoutY="124.0" promptText="COD PRODUCTO" />
             <TextField fx:id="cantidadProducto" layoutX="196.0" layoutY="124.0" promptText="CANTIDAD" />
             <TableView fx:id="tablaProductos" layoutX="21.0" layoutY="186.0" prefHeight="384.0" prefWidth="540.0" />
@@ -46,20 +49,20 @@
                   <Font name="Yu Gothic Regular" size="52.0" />
                </font>
             </Label>
-            <Text fx:id="precioTotal" layoutX="366.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Total: ">
+            <Text fx:id="precioTotal" layoutX="344.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Total: ">
                <font>
                   <Font size="20.0" />
                </font></Text>
          </children>
       </Pane>
-      <Pane prefHeight="649.0" prefWidth="600.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3">
+      <Pane prefHeight="649.0" prefWidth="600.0" style="-fx-background-radius: 30px;" styleClass="fondoTarjeta" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3">
          <children>
             <Label layoutX="81.0" layoutY="36.0" prefHeight="69.0" prefWidth="155.0" text="Pagar" textAlignment="CENTER">
                <font>
                   <Font name="Yu Gothic Regular" size="55.0" />
                </font>
             </Label>
-            <Button layoutX="50.0" layoutY="456.0" mnemonicParsing="false" onAction="#onSubmitVentaClick" prefHeight="113.0" prefWidth="218.0" styleClass="boton" stylesheets="@estilos.css" text="Confirmar Venta">
+            <Button layoutX="50.0" layoutY="456.0" mnemonicParsing="false" onAction="#onSubmitVentaClick" prefHeight="113.0" prefWidth="218.0" styleClass="boton2" stylesheets="@estilos.css" text="Confirmar Venta" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
@@ -78,9 +81,12 @@
             <ChoiceBox fx:id="cajaDecisiones" accessibleText="Elegir Medio" layoutX="82.0" layoutY="161.0" prefWidth="150.0" />
          </children>
       </Pane>
-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="146.0" styleClass="boton" stylesheets="@estilos.css" text="Volver al menu" textAlignment="CENTER" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="146.0" styleClass="boton2" stylesheets="@estilos.css" text="Volver al menu" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
+         </cursor>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
    </children>
 </GridPane>
