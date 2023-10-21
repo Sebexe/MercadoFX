@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -33,7 +34,10 @@
    <children>
       <Pane prefHeight="649.0" prefWidth="600.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
          <children>
-            <Button layoutX="401.0" layoutY="124.0" mnemonicParsing="false" onAction="#onAgregarCarritoClick" prefHeight="25.0" prefWidth="155.0" styleClass="boton" stylesheets="@estilos.css" text="Agregar al Carrito" />
+            <Button layoutX="401.0" layoutY="124.0" mnemonicParsing="false" onAction="#onAgregarCarritoClick" prefHeight="25.0" prefWidth="155.0" styleClass="boton" stylesheets="@estilos.css" text="Agregar al Carrito">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <TextField fx:id="codProducto" layoutX="30.0" layoutY="124.0" promptText="COD PRODUCTO" />
             <TextField fx:id="cantidadProducto" layoutX="196.0" layoutY="124.0" promptText="CANTIDAD" />
             <TableView fx:id="tablaProductos" layoutX="21.0" layoutY="186.0" prefHeight="384.0" prefWidth="540.0" />
@@ -42,7 +46,7 @@
                   <Font name="Yu Gothic Regular" size="52.0" />
                </font>
             </Label>
-            <Text layoutX="366.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Total: ">
+            <Text fx:id="precioTotal" layoutX="366.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Total: ">
                <font>
                   <Font size="20.0" />
                </font></Text>
@@ -55,19 +59,28 @@
                   <Font name="Yu Gothic Regular" size="55.0" />
                </font>
             </Label>
-            <Button layoutX="50.0" layoutY="456.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="218.0" styleClass="boton" stylesheets="@estilos.css" text="Confirmar Venta">
+            <Button layoutX="50.0" layoutY="456.0" mnemonicParsing="false" onAction="#onSubmitVentaClick" prefHeight="113.0" prefWidth="218.0" styleClass="boton" stylesheets="@estilos.css" text="Confirmar Venta">
                <font>
                   <Font size="23.0" />
-               </font></Button>
-            <Text layoutX="55.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio_Final:">
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Text fx:id="precioF" layoutX="55.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <TextField layoutX="55.0" layoutY="375.0" prefHeight="39.0" prefWidth="209.0" promptText="Ingresar Metodo" text="CUIL CLIENTE" />
-            <ChoiceBox accessibleText="Elegir Medio" layoutX="82.0" layoutY="161.0" prefWidth="150.0" />
+            <TextField fx:id="submitVenta" layoutX="55.0" layoutY="375.0" prefHeight="39.0" prefWidth="209.0" promptText="CUIL Cliente">
+               <font>
+                  <Font name="Corbel" size="17.0" />
+               </font></TextField>
+            <ChoiceBox fx:id="cajaDecisiones" accessibleText="Elegir Medio" layoutX="82.0" layoutY="161.0" prefWidth="150.0" />
          </children>
       </Pane>
-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="146.0" styleClass="boton" stylesheets="@estilos.css" text="Volver al menu" textAlignment="CENTER" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="146.0" styleClass="boton" stylesheets="@estilos.css" text="Volver al menu" textAlignment="CENTER" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </GridPane>

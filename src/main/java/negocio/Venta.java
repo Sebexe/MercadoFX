@@ -3,26 +3,33 @@ package negocio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Venta implements Serializable {
     ArrayList<ProductoVenta> carrito = new ArrayList<>();
     int total;
     double Precio_final;
+    Pago medio_pago;
 
     public void setMedio_pago(Pago medio_pago) {
         this.medio_pago = medio_pago;
     }
 
+    public String getMedio(){
+        return this.medio_pago.getDescripcion_metodo();
+    }
+
     public double getPrecio_final() {
+        medio_pago.setValor(total);
+        medio_pago.CalcularCosto();
         return medio_pago.getPrecio_final();
     }
 
-    public String getDescripcion_metodo(){
-        return medio_pago.getDescripcion_metodo();
-    }
 
-    Pago medio_pago;
+
+
+
+
+
 
     public int getCuil_cliente() {
         return cuil_cliente;
@@ -46,8 +53,13 @@ public class Venta implements Serializable {
     int numero_venta;
 
 
-    public void agregarCarrito(Producto producto,int cantidad){
-        carrito.add(new ProductoVenta(producto,cantidad));
+    public void agregarCarrito(ProductoVenta producto){
+        carrito.add(producto);
+        calcularTotal();
+    }
+
+    public void setCarrito(ArrayList<ProductoVenta> nuevoCarrito){
+        carrito = nuevoCarrito;
         calcularTotal();
     }
 

@@ -1,6 +1,8 @@
 package negocio;
 
-public class ProductoVenta  {
+import java.io.Serializable;
+
+public class ProductoVenta  implements Serializable {
 
     int cantidad;
 
@@ -25,6 +27,9 @@ public class ProductoVenta  {
 
     public int getCantidad() {
         return cantidad;
+    }
+    public void setCantidad(int i) {
+        cantidad = i;
     }
     public int getPrecio_unitario() {
         return this.productoVender.getPrecio_unitario();

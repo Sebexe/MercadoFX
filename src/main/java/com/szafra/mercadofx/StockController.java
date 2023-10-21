@@ -57,8 +57,8 @@ public class StockController {
                 else {
                     Programa.obtenerInstancia().usarAlmacen().agregarProducto(codigoNuevo, descripcionNueva, precioNuevo, actualNuevo, minimoNuevo);
                     Programa.obtenerInstancia().guardarAlmacen();
-                    ObservableList<Producto> productosObservableList = FXCollections.observableArrayList(Programa.obtenerInstancia().listarProductos());
-                    tabla.setItems(productosObservableList);
+                    productosObservableList.clear();
+                    productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
                     Programa.obtenerInstancia().crearAlertaPositiva("El producto se ha cargado correctamente.");
                     nuevoID.clear();
                     nuevaDescripcion.clear();
@@ -82,8 +82,8 @@ public class StockController {
             else {
                 Programa.obtenerInstancia().usarAlmacen().sacarProducto(idModificar);
                 Programa.obtenerInstancia().guardarAlmacen();
-                ObservableList<Producto> productosObservableList = FXCollections.observableArrayList(Programa.obtenerInstancia().listarProductos());
-                tabla.setItems(productosObservableList);
+                productosObservableList.clear();
+                productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
                 Programa.obtenerInstancia().crearAlertaPositiva("El producto se ha eliminado correctamente.");
                 modificarID.clear();
             }
@@ -91,7 +91,11 @@ public class StockController {
         }
     }
 
-
+    public void actualizarVistaStock() {
+        productosObservableList.clear();
+        productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
+        System.out.println("LLegaste");
+    }
 
     @FXML
     protected void onAgregarStockClick() {
@@ -106,6 +110,7 @@ public class StockController {
                 Programa.obtenerInstancia().crearAlerta("No se permiten numeros negativos.");
             else if (Programa.obtenerInstancia().usarAlmacen().haySuficiente(idModificar,aAgregar)){
                 Programa.obtenerInstancia().usarAlmacen().agregarExistencias(idModificar,aAgregar);
+                Programa.obtenerInstancia().usarAlmacen().buscarProducto(idModificar).calcularEstado();
                 Programa.obtenerInstancia().crearAlertaPositiva("Las existencias se han agregado correctamente.");
                 productosObservableList.clear();
                 productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
@@ -159,6 +164,7 @@ public class StockController {
         estadoColumn.setCellValueFactory(new PropertyValueFactory<>("estado"));
         tabla.getColumns().addAll(codigoColumn, descripcionColumn, precioColumn, stockActualColumn, stockMinimoColumn,estadoColumn);
         tabla.setItems(productosObservableList);
+        Programa.obtenerInstancia().setStockController(this);
 
 
     }

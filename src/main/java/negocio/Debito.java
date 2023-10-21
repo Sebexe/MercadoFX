@@ -5,4 +5,8 @@ public class Debito extends Pago{
         super(valor);
         descripcion_metodo = "Debito";
     }
+    @Override
+    public void CalcularCosto(){
+        precio_final = valor;
+    }
 }

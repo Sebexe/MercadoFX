@@ -34,4 +34,7 @@ public class Credito extends Pago{
         c_cuota = Math.round(c_cuota * 100.0) / 100.0;
     }
 
+
+
+
 }

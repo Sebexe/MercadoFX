@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import negocio.Almacen;
+import negocio.AlmacenVentas;
 import negocio.Producto;
+import negocio.Venta;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -23,10 +25,24 @@ public class Programa extends Application {
     private static Stage escenario;
 
     private static Almacen almacenPrincipal;
+    private static AlmacenVentas almacenVentasPrincipal;
 
+    private StockController stockController;
+    private HistorialVentaController pasadasController;
 
+    public void setStockController(StockController controller) {
+        stockController = controller;
+    }
+    public void setStockController(HistorialVentaController controller) {
+        pasadasController = controller;
+    }
+    public void Refrescar() {
+        stockController.actualizarVistaStock();
+    }
 
-
+    public void RefrescarVentas() {
+        pasadasController.actualizarVistaVentas();
+    }
 
 
     public static Programa obtenerInstancia() {
@@ -39,6 +55,7 @@ public class Programa extends Application {
         stage.setMinWidth(1280);
         escenario = stage;
         almacenPrincipal = cargarAlmacen();
+        almacenVentasPrincipal = cargarAlmacenVentas();
         FXMLLoader cargadorMenu = new FXMLLoader(Programa.class.getResource("menuPrincipal.fxml"));
         FXMLLoader cargadorHistorialVenta = new FXMLLoader(Programa.class.getResource("historialVentas.fxml"));
         FXMLLoader cargadorStock = new FXMLLoader(Programa.class.getResource("Stock.fxml"));
@@ -93,6 +110,40 @@ public class Programa extends Application {
         }
     }
 
+
+    public ArrayList<Producto> listarProductos() {
+        return almacenPrincipal.listarProductos();
+    }
+
+    public ArrayList<Venta> listarVentas() {
+        return almacenVentasPrincipal.recuperarVentas();
+    }
+
+
+    public Almacen usarAlmacen() {
+        return almacenPrincipal;
+    }
+
+    public AlmacenVentas usarAlmacenVentas() {
+        return almacenVentasPrincipal;
+    }
+
+    public AlmacenVentas cargarAlmacenVentas() {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("ventas.dat"))) {
+            return (AlmacenVentas) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            return new AlmacenVentas(); // Si ocurre un error, devuelve una lista vacía
+        }
+    }
+
+    public void guardarAlmacenVentas() {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ventas.dat"))) {
+            outputStream.writeObject(almacenVentasPrincipal);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void guardarAlmacen() {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("datos.dat"))) {
             outputStream.writeObject(almacenPrincipal);
@@ -100,14 +151,6 @@ public class Programa extends Application {
             e.printStackTrace();
         }
     }
-    public ArrayList<Producto> listarProductos() {
-        return almacenPrincipal.listarProductos();
-    }
-
-    public Almacen usarAlmacen() {
-        return almacenPrincipal;
-    }
-
 
     public static void main(String[] args) {
         launch();

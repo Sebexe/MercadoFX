@@ -14,6 +14,9 @@
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="690.0" minWidth="10.0" prefWidth="427.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="696.0" minWidth="10.0" prefWidth="427.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0" minWidth="10.0" prefWidth="426.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0" minWidth="10.0" prefWidth="426.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0" minWidth="10.0" prefWidth="426.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0" minWidth="10.0" prefWidth="426.0" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -22,7 +25,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TableView prefHeight="180.0" prefWidth="1035.0" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <TableView fx:id="tablita" prefHeight="255.0" prefWidth="639.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -30,11 +33,11 @@
             <Insets />
          </opaqueInsets>
       </TableView>
-      <Label text="Historial de Ventas" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+      <Label text="Historial de Ventas" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER">
          <font>
             <Font size="46.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" onAction="#onMenuButtonClick" text="Volver al Menu" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#onMenuButtonClick" text="Volver al Menu" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
    </children>
 </GridPane>

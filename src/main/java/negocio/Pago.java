@@ -21,7 +21,13 @@ public class Pago implements Serializable {
         DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.DOWN);
     }
+
+    public void setValor(double valor){
+        this.valor = valor;
+    }
+
     public double getPrecio_final() {
+        this.CalcularCosto();
         return precio_final;
     }
 
@@ -30,7 +36,7 @@ public class Pago implements Serializable {
     }
 
     public void CalcularCosto(){
-        valor = precio_final;
+        precio_final = valor;
     }
 
 }
