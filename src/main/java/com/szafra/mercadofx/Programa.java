@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import negocio.Almacen;
 import negocio.AlmacenVentas;
@@ -51,8 +52,12 @@ public class Programa extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        stage.getIcons().add(new Image(Programa.class.getResourceAsStream("icon.png")));
+
         stage.setMinHeight(720);
         stage.setMinWidth(1280);
+        stage.setMaxHeight(800);
+        stage.setMaxWidth(1350);
         escenario = stage;
         almacenPrincipal = cargarAlmacen();
         almacenVentasPrincipal = cargarAlmacenVentas();
@@ -70,7 +75,7 @@ public class Programa extends Application {
 
 
 
-        stage.setTitle("Hello!");
+        stage.setTitle("All Market");
         stage.setScene(escenaMenu);
         stage.show();
     }
