@@ -6,6 +6,16 @@ import java.util.HashMap;
 
 public class AlmacenVentas implements Serializable {
     HashMap<Integer,Venta> almacen_ventas;
+
+    public Almacen getAlmacenGuardado() {
+        return almacenGuardado;
+    }
+
+    public void setAlmacenGuardado(Almacen almacenGuardado) {
+        this.almacenGuardado = almacenGuardado;
+    }
+
+    Almacen almacenGuardado = new Almacen();
     int contador;
 
     public AlmacenVentas(){

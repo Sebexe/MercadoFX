@@ -135,6 +135,7 @@ public class StockController {
                 Programa.obtenerInstancia().crearAlerta("No se permiten numeros negativos.");
             else if (Programa.obtenerInstancia().usarAlmacen().haySuficiente(idModificar,-aAgregar)){
                 Programa.obtenerInstancia().usarAlmacen().sacarExistencias(idModificar,aAgregar);
+                Programa.obtenerInstancia().usarAlmacen().buscarProducto(idModificar).calcularEstado();
                 Programa.obtenerInstancia().guardarAlmacen();
                 productosObservableList.clear();
                 productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
