@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-public class Pago implements Serializable {
+public abstract class Pago implements Serializable {
     public String getDescripcion_metodo() {
         return descripcion_metodo;
     }
@@ -12,9 +12,6 @@ public class Pago implements Serializable {
     String descripcion_metodo;
     double valor;
     double precio_final;
-
-
-
 
     public Pago(double valor){
         this.valor = valor;

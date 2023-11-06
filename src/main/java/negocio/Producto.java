@@ -10,6 +10,16 @@ public class Producto implements Serializable {
     int stock_minimo;
     String estado;
 
+    public boolean isAltura() {
+        return altura;
+    }
+
+    public void setAltura(boolean altura) {
+        this.altura = altura;
+    }
+
+    boolean altura;
+
     public Producto(int codigo, String descripcion, int precio_unitario, int stock_actual, int stock_minimo) {
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -17,6 +27,7 @@ public class Producto implements Serializable {
         this.stock_actual = stock_actual;
         this.stock_minimo = stock_minimo;
         this.calcularEstado();
+        this.altura = true;
     }
 
     public int getCodigo() {
@@ -64,9 +75,9 @@ public class Producto implements Serializable {
     }
 
     public void calcularEstado() {
-        if (this.stock_actual < stock_minimo)
-            this.estado = "Rellenar";
-        else
+        if (this.stock_actual > stock_minimo)
             this.estado = "En stock";
+        else
+            this.estado = "Rellenar";
     }
 }

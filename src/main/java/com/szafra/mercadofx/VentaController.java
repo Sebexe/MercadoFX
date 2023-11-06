@@ -46,14 +46,14 @@ public class VentaController {
         ventaActual.setNumero_venta(Programa.obtenerInstancia().usarAlmacenVentas().getContador());
         for (ProductoVenta productoVenta : carritoActual) {
             Programa.obtenerInstancia().usarAlmacen().sacarExistencias(productoVenta.getID(),productoVenta.getCantidad());
-            Programa.obtenerInstancia().usarAlmacen().buscarProducto(productoVenta.getID()).calcularEstado();
+            Programa.obtenerInstancia().usarAlmacen().calcularExistencias(productoVenta.getID());
         }
         Programa.obtenerInstancia().crearAlertaPositiva("La venta se ha completado con exito!");
         Programa.obtenerInstancia().usarAlmacenVentas().guardarVenta(ventaActual);
         Programa.obtenerInstancia().guardarAlmacen();
         Programa.obtenerInstancia().guardarAlmacenVentas();
 
-        Venta ventaActual = new Venta();
+        ventaActual = new Venta();
         carritoObservable.clear();
         carritoActual = new ArrayList<>();
         cajaDecisiones.setValue("");

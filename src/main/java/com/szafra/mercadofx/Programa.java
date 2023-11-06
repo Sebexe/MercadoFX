@@ -58,8 +58,8 @@ public class Programa extends Application {
 
         stage.setMinHeight(720);
         stage.setMinWidth(1280);
-        stage.setMaxHeight(800);
-        stage.setMaxWidth(1350);
+        stage.setMaxHeight(720);
+        stage.setMaxWidth(1280);
         escenario = stage;
 
         FXMLLoader cargadorMenu = new FXMLLoader(Programa.class.getResource("menuPrincipal.fxml"));
@@ -93,7 +93,6 @@ public class Programa extends Application {
         nuevaAlerta.show();
     }
 
-
     public void crearAlertaPositiva(String texto){
         Alert nuevaAlerta = new Alert(Alert.AlertType.CONFIRMATION);
         nuevaAlerta.setContentText(texto);
@@ -111,7 +110,6 @@ public class Programa extends Application {
     }
     public void cambiarEscenaHistorial(){
         escenario.setScene(historialP);
-
     }
 
 
@@ -154,6 +152,6 @@ public class Programa extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

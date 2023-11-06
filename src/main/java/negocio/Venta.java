@@ -26,11 +26,6 @@ public class Venta implements Serializable {
 
 
 
-
-
-
-
-
     public int getCuil_cliente() {
         return cuil_cliente;
     }
