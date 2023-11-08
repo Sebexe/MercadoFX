@@ -36,32 +36,47 @@
                 <Insets top="10.0" />
             </padding>
             <children>
-                <Label alignment="TOP_CENTER" contentDisplay="BOTTOM" layoutX="254.0" layoutY="-3.0" prefHeight="34.0" prefWidth="386.0" text="Agregar Producto" textAlignment="CENTER">
+                <Label alignment="TOP_CENTER" contentDisplay="BOTTOM" layoutX="254.0" layoutY="-6.0" prefHeight="34.0" prefWidth="386.0" text="Agregar Producto" textAlignment="CENTER">
                     <font>
-                        <Font name="Corbel Light" size="20.0" />
+                        <Font name="Marlett" size="20.0" />
                     </font>
                     <padding>
                         <Insets top="10.0" />
                     </padding>
                 </Label>
-                <TextField fx:id="nuevoID" layoutX="21.0" layoutY="41.0" promptText="ID Producto" style="-fx-background-radius: 10px;" />
-                <TextField fx:id="nuevaDescripcion" layoutX="202.0" layoutY="41.0" prefHeight="25.0" prefWidth="142.0" promptText="Descripcion" style="-fx-background-radius: 10px;" />
-                <TextField fx:id="nuevoMinimo" layoutX="367.0" layoutY="41.0" prefHeight="25.0" prefWidth="160.0" promptText="Cantidad Minima" style="-fx-background-radius: 10px;" />
-                <TextField fx:id="nuevoActual" layoutX="563.0" layoutY="41.0" promptText="Cantidad Actual" style="-fx-background-radius: 10px;" />
-                <TextField fx:id="nuevoPrecio" layoutX="730.0" layoutY="40.0" promptText="Precio" style="-fx-background-radius: 10px;" />
-                <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="898.0" layoutY="40.0" mnemonicParsing="false" onAction="#onAgregarProductoClick" styleClass="boton2" stylesheets="@estilos.css" text="Agregar Producto" textFill="WHITE">
+                <TextField fx:id="nuevoID" layoutX="21.0" layoutY="41.0" prefHeight="27.0" prefWidth="145.0" promptText="ID Producto" style="-fx-background-radius: 10px;">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font></TextField>
+                <TextField fx:id="nuevaDescripcion" layoutX="186.0" layoutY="41.0" prefHeight="25.0" prefWidth="149.0" promptText="Descripcion" style="-fx-background-radius: 10px;">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font></TextField>
+                <TextField fx:id="nuevoMinimo" layoutX="355.0" layoutY="41.0" prefHeight="27.0" prefWidth="173.0" promptText="Cantidad Minima" style="-fx-background-radius: 10px;">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font></TextField>
+                <TextField fx:id="nuevoActual" layoutX="543.0" layoutY="41.0" prefHeight="27.0" prefWidth="149.0" promptText="Cantidad Actual" style="-fx-background-radius: 10px;">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font></TextField>
+                <TextField fx:id="nuevoPrecio" layoutX="717.0" layoutY="41.0" prefHeight="27.0" prefWidth="160.0" promptText="Precio" style="-fx-background-radius: 10px;">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font></TextField>
+                <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="906.0" layoutY="41.0" mnemonicParsing="false" onAction="#onAgregarProductoClick" styleClass="boton2" stylesheets="@estilos.css" text="Agregar Producto" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="13.0" />
                </font></Button>
             </children>
             <GridPane.margin>
                 <Insets bottom="20.0" top="20.0" />
             </GridPane.margin>
         </Pane>
-        <Pane prefHeight="125.0" prefWidth="82.0" style="-fx-background-radius: 30px;" styleClass="fondoTarjeta" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="1">
+        <Pane prefHeight="83.0" prefWidth="955.0" style="-fx-background-radius: 30px;" styleClass="fondoTarjeta" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="1">
             <padding>
                 <Insets top="10.0" />
             </padding>
@@ -69,9 +84,9 @@
                 <Insets bottom="20.0" />
             </GridPane.margin>
             <children>
-                <Label alignment="TOP_CENTER" contentDisplay="BOTTOM" layoutX="262.0" layoutY="-3.0" prefHeight="34.0" prefWidth="386.0" text="Modificar Producto" textAlignment="CENTER">
+                <Label alignment="TOP_CENTER" contentDisplay="BOTTOM" layoutX="260.0" layoutY="-6.0" prefHeight="34.0" prefWidth="386.0" text="Modificar Producto" textAlignment="CENTER">
                     <font>
-                        <Font name="Corbel Light" size="20.0" />
+                        <Font name="Marlett" size="20.0" />
                     </font>
                     <padding>
                         <Insets top="10.0" />
@@ -83,6 +98,9 @@
             <GridPane.margin>
                 <Insets left="20.0" right="20.0" />
             </GridPane.margin>
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
         </TextField>
         <TextField fx:id="nuevoStock" layoutX="350.0" layoutY="135.0" prefHeight="25.0" prefWidth="160.0" promptText="Nuevo Stock" style="-fx-background-radius: 10px;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
             <GridPane.margin>
@@ -91,27 +109,31 @@
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
         </TextField>
-        <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="995.0" layoutY="135.0" mnemonicParsing="false" onAction="#onEliminarProductoClick" prefHeight="25.0" prefWidth="126.0" styleClass="boton2" stylesheets="@estilos.css" text="Eliminar Producto" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+        <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="995.0" layoutY="135.0" mnemonicParsing="false" onAction="#onEliminarProductoClick" prefHeight="27.0" prefWidth="142.0" styleClass="boton2" stylesheets="@estilos.css" text="Eliminar Producto" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
         <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="995.0" layoutY="135.0" mnemonicParsing="false" onAction="#onAgregarStockClick" prefHeight="25.0" prefWidth="124.0" styleClass="boton2" stylesheets="@estilos.css" text="Agregar Stock" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="13.0" />
          </font></Button>
         <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="650.0" layoutY="265.0" mnemonicParsing="false" onAction="#onEliminarStockClick" prefHeight="25.0" prefWidth="114.0" styleClass="boton2" stylesheets="@estilos.css" text="Reducir Stock" textFill="WHITE" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="13.0" />
          </font></Button>
         <TableView fx:id="tabla" prefHeight="200.0" prefWidth="200.0" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.rowIndex="2" GridPane.rowSpan="2" />
         <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="355.0" layoutY="174.0" mnemonicParsing="false" onAction="#onMenuButtonClick" styleClass="boton2" stylesheets="@estilos.css" text="Volver al menu" textFill="WHITE" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">

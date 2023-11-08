@@ -71,7 +71,6 @@ public class StockController {
     }
     @FXML
     protected void onEliminarProductoClick() {
-        //hola
         if (modificarID.getText().isEmpty())
             Programa.obtenerInstancia().crearAlerta("Alguno de los campos no esta completo");
         else {
@@ -80,7 +79,7 @@ public class StockController {
                 Programa.obtenerInstancia().crearAlerta("No existe en la base");
             }
             else {
-                Programa.obtenerInstancia().usarAlmacen().sacarProducto(idModificar);
+                Programa.obtenerInstancia().usarAlmacen().bajarProducto(idModificar);
                 Programa.obtenerInstancia().guardarAlmacen();
                 productosObservableList.clear();
                 productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
@@ -94,7 +93,6 @@ public class StockController {
     public void actualizarVistaStock() {
         productosObservableList.clear();
         productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
-        System.out.println("LLegaste");
     }
 
     @FXML
@@ -110,7 +108,7 @@ public class StockController {
                 Programa.obtenerInstancia().crearAlerta("No se permiten numeros negativos.");
             else if (Programa.obtenerInstancia().usarAlmacen().haySuficiente(idModificar,aAgregar)){
                 Programa.obtenerInstancia().usarAlmacen().agregarExistencias(idModificar,aAgregar);
-                Programa.obtenerInstancia().usarAlmacen().buscarProducto(idModificar).calcularEstado();
+                Programa.obtenerInstancia().usarAlmacen().calcularExistencias(idModificar);
                 Programa.obtenerInstancia().crearAlertaPositiva("Las existencias se han agregado correctamente.");
                 productosObservableList.clear();
                 productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());
@@ -135,6 +133,7 @@ public class StockController {
                 Programa.obtenerInstancia().crearAlerta("No se permiten numeros negativos.");
             else if (Programa.obtenerInstancia().usarAlmacen().haySuficiente(idModificar,-aAgregar)){
                 Programa.obtenerInstancia().usarAlmacen().sacarExistencias(idModificar,aAgregar);
+                Programa.obtenerInstancia().usarAlmacen().calcularExistencias(idModificar);
                 Programa.obtenerInstancia().guardarAlmacen();
                 productosObservableList.clear();
                 productosObservableList.addAll(Programa.obtenerInstancia().listarProductos());

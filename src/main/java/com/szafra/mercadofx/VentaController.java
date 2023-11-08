@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import negocio.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class VentaController {
     ObservableList<ProductoVenta> carritoObservable;
@@ -41,28 +42,34 @@ public class VentaController {
     }
     @FXML
     protected void onSubmitVentaClick() {
-        int cuil_cliente = Integer.parseInt( submitVenta.getText());
-        ventaActual.setCuil_cliente(cuil_cliente);
-        ventaActual.setNumero_venta(Programa.obtenerInstancia().usarAlmacenVentas().getContador());
-        for (ProductoVenta productoVenta : carritoActual) {
-            Programa.obtenerInstancia().usarAlmacen().sacarExistencias(productoVenta.getID(),productoVenta.getCantidad());
-            Programa.obtenerInstancia().usarAlmacen().buscarProducto(productoVenta.getID()).calcularEstado();
+        if (submitVenta.getText().isEmpty() || carritoObservable.isEmpty())
+            Programa.obtenerInstancia().crearAlerta("El CUIL ni el carrito pueden estar vacios.");
+        else if (cajaDecisiones.getValue() == null || Objects.equals(cajaDecisiones.getValue(), "") ) {
+            Programa.obtenerInstancia().crearAlerta("El medio de pago no puede estar vacio.");
         }
-        Programa.obtenerInstancia().crearAlertaPositiva("La venta se ha completado con exito!");
-        Programa.obtenerInstancia().usarAlmacenVentas().guardarVenta(ventaActual);
-        Programa.obtenerInstancia().guardarAlmacen();
-        Programa.obtenerInstancia().guardarAlmacenVentas();
+        else{
+            int cuil_cliente = Integer.parseInt(submitVenta.getText());
+            ventaActual.setCuil_cliente(cuil_cliente);
+            ventaActual.setNumero_venta(Programa.obtenerInstancia().usarAlmacenVentas().getContador());
+            for (ProductoVenta productoVenta : carritoActual) {
+                Programa.obtenerInstancia().usarAlmacen().sacarExistencias(productoVenta.getID(), productoVenta.getCantidad());
+                Programa.obtenerInstancia().usarAlmacen().calcularExistencias(productoVenta.getID());
+            }
+            Programa.obtenerInstancia().crearAlertaPositiva("La venta se ha completado con exito!");
+            Programa.obtenerInstancia().usarAlmacenVentas().guardarVenta(ventaActual);
+            Programa.obtenerInstancia().guardarAlmacen();
+            Programa.obtenerInstancia().guardarAlmacenVentas();
 
-        Venta ventaActual = new Venta();
-        carritoObservable.clear();
-        carritoActual = new ArrayList<>();
-        cajaDecisiones.setValue("");
-        Programa.obtenerInstancia().Refrescar();
-        Programa.obtenerInstancia().RefrescarVentas();
-        precioTotal.setText("");
-        precioF.setText("");
-        submitVenta.clear();
-
+            ventaActual = new Venta();
+            carritoObservable.clear();
+            carritoActual = new ArrayList<>();
+            cajaDecisiones.setValue("");
+            Programa.obtenerInstancia().Refrescar();
+            Programa.obtenerInstancia().RefrescarVentas();
+            precioTotal.setText("");
+            precioF.setText("");
+            submitVenta.clear();
+        }
     }
 
 
@@ -70,47 +77,50 @@ public class VentaController {
     @FXML
     protected void onAgregarCarritoClick() {
         ProductoVenta productoEncontrado = null;
-        int codProductoValor = Integer.parseInt(codProducto.getText());
-        int cantidadProductoValor = Integer.parseInt(cantidadProducto.getText());
-        if (cantidadProductoValor <= 0)
-            Programa.obtenerInstancia().crearAlerta("No se puede ingresar una cantidad negativa ni 0");
-        else {
-        if (Programa.obtenerInstancia().usarAlmacen().estaProducto(codProductoValor)) {
-            Producto producto_agregar = Programa.obtenerInstancia().usarAlmacen().buscarProducto(codProductoValor);
-            for (ProductoVenta productoVenta : carritoActual) {
-                if (productoVenta.getID() == codProductoValor)
-                    productoEncontrado = productoVenta;
-            }
-            if (productoEncontrado == null) {
-                if (Programa.obtenerInstancia().usarAlmacen().haySuficiente(codProductoValor, -cantidadProductoValor)) {
-                    ProductoVenta nuevoProducto = new ProductoVenta(producto_agregar, cantidadProductoValor);
-                    carritoActual.add(nuevoProducto);
+        if (codProducto.getText().isEmpty() || cantidadProducto.getText().isEmpty())
+            Programa.obtenerInstancia().crearAlerta("Los campos no pueden estar vacios.");
+        else{
+            int codProductoValor = Integer.parseInt(codProducto.getText());
+            int cantidadProductoValor = Integer.parseInt(cantidadProducto.getText());
+            if (cantidadProductoValor <= 0)
+                Programa.obtenerInstancia().crearAlerta("No se puede ingresar una cantidad negativa ni 0");
+            else {
+                if (Programa.obtenerInstancia().usarAlmacen().estaProducto(codProductoValor)) {
+                    Producto producto_agregar = Programa.obtenerInstancia().usarAlmacen().buscarProducto(codProductoValor);
+                    for (ProductoVenta productoVenta : carritoActual) {
+                        if (productoVenta.getID() == codProductoValor)
+                            productoEncontrado = productoVenta;
+                    }
+                    if (productoEncontrado == null) {
+                        if (Programa.obtenerInstancia().usarAlmacen().haySuficiente(codProductoValor, -cantidadProductoValor)) {
+                            ProductoVenta nuevoProducto = new ProductoVenta(producto_agregar, cantidadProductoValor);
+                            carritoActual.add(nuevoProducto);
+                        } else {
+                            Programa.obtenerInstancia().crearAlerta("No hay suficiente stock de ese producto.");
+                        }
+                    } else {
+                        if (Programa.obtenerInstancia().usarAlmacen().haySuficiente(codProductoValor, -productoEncontrado.getCantidad() - cantidadProductoValor)) {
+                            productoEncontrado.setCantidad(productoEncontrado.getCantidad() + cantidadProductoValor);
+                            productoEncontrado.CalcularSubtotal();
+                        } else {
+                            Programa.obtenerInstancia().crearAlerta("No hay suficiente stock de ese producto.");
+                        }
+                    }
+                    ventaActual.setCarrito(carritoActual);
+                    carritoObservable.clear();
+                    carritoObservable.addAll(carritoActual);
+                    codProducto.clear();
+                    cantidadProducto.clear();
+                    precioTotal.setText("El precio total es: $" + ventaActual.getTotal());
+                    if (!Objects.equals(cajaDecisiones.getValue(), "") && cajaDecisiones.getValue() != null) {
+                        precioF.setText("El precio final es: " + ventaActual.getPrecio_final());
+                    }
                 } else {
-                    Programa.obtenerInstancia().crearAlerta("No hay suficiente stock de ese producto.");
-                }
-            } else {
-                if (Programa.obtenerInstancia().usarAlmacen().haySuficiente(codProductoValor, -productoEncontrado.getCantidad() - cantidadProductoValor)) {
-                    productoEncontrado.setCantidad(productoEncontrado.getCantidad() + cantidadProductoValor);
-                    productoEncontrado.CalcularSubtotal();
-                } else {
-                    Programa.obtenerInstancia().crearAlerta("No hay suficiente stock de ese producto.");
+                    Programa.obtenerInstancia().crearAlerta("Ese producto no existe");
+                    codProducto.clear();
+                    cantidadProducto.clear();
                 }
             }
-            ventaActual.setCarrito(carritoActual);
-            carritoObservable.clear();
-            carritoObservable.addAll(carritoActual);
-            codProducto.clear();
-            cantidadProducto.clear();
-            precioTotal.setText("El precio total es: $" + ventaActual.getTotal());
-            if (cajaDecisiones.getValue() != null) {
-                precioF.setText("El precio final es: " + ventaActual.getPrecio_final());
-            }
-        }
-        else {
-            Programa.obtenerInstancia().crearAlerta("Ese producto no existe");
-            codProducto.clear();
-            cantidadProducto.clear();
-        }
         }
     }
 
@@ -149,10 +159,13 @@ public class VentaController {
                             ventaActual.setMedio_pago(new Credito(ventaActual.getTotal(),3));
                     case "Credito 6 cuotas" ->
                             ventaActual.setMedio_pago(new Credito(ventaActual.getTotal(),6));
-
+                    case "" ->
+                            ventaActual.setMedio_pago(null);
                 }
-                precioF.setText("El precio final es: " + ventaActual.getPrecio_final());
-
+                System.out.println("El texto es :" + cajaDecisiones.getValue());
+                if (!Objects.equals(cajaDecisiones.getValue(), "") && cajaDecisiones.getValue() != null) {
+                    precioF.setText("El precio final es: " + ventaActual.getPrecio_final());
+                }
                 }
 
             }

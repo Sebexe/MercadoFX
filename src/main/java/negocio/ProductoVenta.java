@@ -6,8 +6,6 @@ public class ProductoVenta  implements Serializable {
 
     int cantidad;
 
-
-
     int subtotal;
     Producto productoVender;
 

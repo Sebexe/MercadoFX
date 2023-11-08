@@ -17,8 +17,8 @@ public class Almacen implements Serializable {
         almacenamiento.put(codigo, new Producto(codigo, descripcion, precio_unitario, stock_actual, stock_minimo));
     }
 
-    public void sacarProducto(int codigo){
-        almacenamiento.remove(codigo);
+    public void bajarProducto(int codigo){
+        almacenamiento.get(codigo).setAltura(false);
     }
 
     public Producto buscarProducto(int codigo) {
@@ -46,7 +46,12 @@ public class Almacen implements Serializable {
     }
 
     public ArrayList<Producto> listarProductos() {
-        return new ArrayList<>(almacenamiento.values());
+        ArrayList<Producto> productosAltos = new ArrayList<>();
+        for (Producto p : almacenamiento.values()) {
+            if (p.isAltura())
+                    productosAltos.add(p);
+        }
+        return productosAltos;
     }
 
 

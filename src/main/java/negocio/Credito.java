@@ -10,6 +10,11 @@ public class Credito extends Pago{
 
 
     @Override
+    public String getDescripcion_metodo() {
+        return super.getDescripcion_metodo() + "  " +  c_cuota +" c/u";
+    }
+
+    @Override
     public void CalcularCosto() {
         switch (cuotas) {
             case 2 -> {

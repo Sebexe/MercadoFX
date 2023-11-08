@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import negocio.Almacen;
 import negocio.AlmacenVentas;
@@ -51,11 +52,16 @@ public class Programa extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        stage.getIcons().add(new Image(Programa.class.getResourceAsStream("icon.png")));
+        almacenVentasPrincipal = cargarAlmacenVentas();
+        almacenPrincipal = cargarAlmacenVentas().getAlmacenGuardado();
+
         stage.setMinHeight(720);
         stage.setMinWidth(1280);
+        stage.setMaxHeight(800);
+        stage.setMaxWidth(1400);
         escenario = stage;
-        almacenPrincipal = cargarAlmacen();
-        almacenVentasPrincipal = cargarAlmacenVentas();
+
         FXMLLoader cargadorMenu = new FXMLLoader(Programa.class.getResource("menuPrincipal.fxml"));
         FXMLLoader cargadorHistorialVenta = new FXMLLoader(Programa.class.getResource("historialVentas.fxml"));
         FXMLLoader cargadorStock = new FXMLLoader(Programa.class.getResource("Stock.fxml"));
@@ -70,9 +76,15 @@ public class Programa extends Application {
 
 
 
-        stage.setTitle("Hello!");
+        stage.setTitle("All Market");
         stage.setScene(escenaMenu);
         stage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        this.guardarAlmacenVentas();
     }
 
     public void crearAlerta(String texto){
@@ -80,7 +92,6 @@ public class Programa extends Application {
         nuevaAlerta.setContentText(texto);
         nuevaAlerta.show();
     }
-
 
     public void crearAlertaPositiva(String texto){
         Alert nuevaAlerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -99,16 +110,8 @@ public class Programa extends Application {
     }
     public void cambiarEscenaHistorial(){
         escenario.setScene(historialP);
-
     }
 
-    private Almacen cargarAlmacen() {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("datos.dat"))) {
-            return (Almacen) inputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            return new Almacen(); // Si ocurre un error, devuelve una lista vacía
-        }
-    }
 
 
     public ArrayList<Producto> listarProductos() {
@@ -145,14 +148,10 @@ public class Programa extends Application {
     }
 
     public void guardarAlmacen() {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("datos.dat"))) {
-            outputStream.writeObject(almacenPrincipal);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        almacenVentasPrincipal.setAlmacenGuardado(almacenPrincipal);
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }
