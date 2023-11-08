@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import negocio.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class VentaController {
     ObservableList<ProductoVenta> carritoObservable;
@@ -43,6 +44,9 @@ public class VentaController {
     protected void onSubmitVentaClick() {
         if (submitVenta.getText().isEmpty() || carritoObservable.isEmpty())
             Programa.obtenerInstancia().crearAlerta("El CUIL ni el carrito pueden estar vacios.");
+        else if (cajaDecisiones.getValue() == null || Objects.equals(cajaDecisiones.getValue(), "") ) {
+            Programa.obtenerInstancia().crearAlerta("El medio de pago no puede estar vacio.");
+        }
         else{
             int cuil_cliente = Integer.parseInt(submitVenta.getText());
             ventaActual.setCuil_cliente(cuil_cliente);
@@ -108,7 +112,7 @@ public class VentaController {
                     codProducto.clear();
                     cantidadProducto.clear();
                     precioTotal.setText("El precio total es: $" + ventaActual.getTotal());
-                    if (cajaDecisiones.getValue() != null) {
+                    if (!Objects.equals(cajaDecisiones.getValue(), "") && cajaDecisiones.getValue() != null) {
                         precioF.setText("El precio final es: " + ventaActual.getPrecio_final());
                     }
                 } else {
@@ -155,11 +159,13 @@ public class VentaController {
                             ventaActual.setMedio_pago(new Credito(ventaActual.getTotal(),3));
                     case "Credito 6 cuotas" ->
                             ventaActual.setMedio_pago(new Credito(ventaActual.getTotal(),6));
-
+                    case "" ->
+                            ventaActual.setMedio_pago(null);
                 }
-                if (!t1.isEmpty())
+                System.out.println("El texto es :" + cajaDecisiones.getValue());
+                if (!Objects.equals(cajaDecisiones.getValue(), "") && cajaDecisiones.getValue() != null) {
                     precioF.setText("El precio final es: " + ventaActual.getPrecio_final());
-
+                }
                 }
 
             }
