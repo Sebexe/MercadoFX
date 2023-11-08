@@ -30,11 +30,7 @@
    <children>
       <TableView fx:id="tablita" prefHeight="207.0" prefWidth="853.0" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <GridPane.margin>
-            <Insets />
          </GridPane.margin>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
       </TableView>
       <Label text="Historial de Ventas" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER">
          <font>
