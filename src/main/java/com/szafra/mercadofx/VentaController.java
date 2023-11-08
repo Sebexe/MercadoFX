@@ -113,7 +113,7 @@ public class VentaController {
                     cantidadProducto.clear();
                     precioTotal.setText("El precio total es: $" + ventaActual.getTotal());
                     if (!Objects.equals(cajaDecisiones.getValue(), "") && cajaDecisiones.getValue() != null) {
-                        precioF.setText("El precio final es: " + ventaActual.getPrecio_final());
+                        precioF.setText("El precio final es: $" + ventaActual.getPrecio_final());
                     }
                 } else {
                     Programa.obtenerInstancia().crearAlerta("Ese producto no existe");
@@ -162,9 +162,8 @@ public class VentaController {
                     case "" ->
                             ventaActual.setMedio_pago(null);
                 }
-                System.out.println("El texto es :" + cajaDecisiones.getValue());
                 if (!Objects.equals(cajaDecisiones.getValue(), "") && cajaDecisiones.getValue() != null) {
-                    precioF.setText("El precio final es: " + ventaActual.getPrecio_final());
+                    precioF.setText("El precio final es: $" + ventaActual.getPrecio_final());
                 }
                 }
 
